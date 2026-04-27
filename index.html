@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wick Award — Strategic Plan 2025–2028</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+<style>
+  :root {
+    --coral:   #f0523d;
+    --coral-dk:#d43d2a;
+    --charcoal:#3e3e3e;
+    --ink:     #272727;
+    --mid:     #767676;
+    --light:   #e7e7e7;
+    --pale:    #f6f6f6;
+    --white:   #ffffff;
+    /* logo rainbow stripe colours */
+    --rb-1: #3eb3c8;
+    --rb-2: #4aaa5b;
+    --rb-3: #f0523d;
+    --rb-4: #f5a623;
+    --section-gap: 5rem;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Poppins', 'Helvetica Neue', Arial, sans-serif;
+    background: var(--white);
+    color: var(--ink);
+    line-height: 1.7;
+    overflow-x: hidden;
+    font-weight: 400;
+  }
+
+  /* ─── PASSWORD GATE ─────────────────────────────────────────── */
+  #gate {
+    position: fixed; inset: 0; z-index: 9999;
+    background: var(--white);
+    display: flex; align-items: center; justify-content: center;
+    padding: 2rem;
+  }
+  #gate.hidden { display: none; }
+  .gate-box { text-align: center; max-width: 380px; width: 100%; }
+  .gate-logo {
+    width: 64px; height: 64px; margin: 0 auto 1.5rem;
+  }
+  /* SVG concentric ring mark in the gate */
+  .gate-logo svg { width: 64px; height: 64px; }
+  .gate-box h1 {
+    color: var(--ink);
+    font-size: 1.5rem; font-weight: 700;
+    margin-bottom: 0.3rem; letter-spacing: -0.01em;
+  }
+  .gate-box .gate-sub { color: var(--mid); font-size: 0.88rem; margin-bottom: 2rem; font-weight: 300; }
+  .gate-box input {
+    width: 100%;
+    padding: 0.85rem 1.2rem;
+    border: 1.5px solid var(--light);
+    border-radius: 4px;
+    background: var(--white);
+    color: var(--ink);
+    font-size: 0.95rem;
+    font-family: 'Poppins', sans-serif;
+    text-align: center; outline: none;
+    transition: border-color 0.2s;
+    margin-bottom: 0.75rem;
+  }
+  .gate-box input:focus { border-color: var(--coral); }
+  .gate-box input::placeholder { color: #bbb; }
+  .gate-btn {
+    width: 100%; padding: 0.85rem;
+    background: var(--coral); color: var(--white);
+    border: none; border-radius: 4px;
+    font-size: 0.9rem; font-family: 'Poppins', sans-serif; font-weight: 600;
+    cursor: pointer; transition: background 0.2s;
+    text-transform: uppercase; letter-spacing: 0.08em;
+  }
+  .gate-btn:hover { background: var(--coral-dk); }
+  .gate-error { color: var(--coral); font-size: 0.82rem; margin-top: 0.75rem; min-height: 1.2em; }
+
+  /* ─── NAV ────────────────────────────────────────────────────── */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: var(--white);
+    border-bottom: 1px solid var(--light);
+    padding: 0 3rem;
+    display: flex; align-items: center; gap: 2rem;
+    height: 60px;
+  }
+  .nav-brand {
+    color: var(--ink); font-weight: 700; font-size: 0.95rem;
+    text-decoration: none; white-space: nowrap;
+    letter-spacing: 0.05em; text-transform: uppercase;
+  }
+  .nav-links {
+    display: flex; gap: 0; list-style: none;
+    overflow-x: auto; scrollbar-width: none; flex: 1;
+  }
+  .nav-links::-webkit-scrollbar { display: none; }
+  .nav-links a {
+    color: var(--mid); text-decoration: none;
+    font-size: 0.78rem; font-weight: 500;
+    padding: 0.5rem 0.9rem; white-space: nowrap;
+    transition: color 0.15s;
+    text-transform: uppercase; letter-spacing: 0.06em;
+  }
+  .nav-links a:hover { color: var(--coral); }
+
+  /* ─── HERO ───────────────────────────────────────────────────── */
+  .hero {
+    background: var(--pale);
+    color: var(--ink);
+    padding: 6rem 3rem 5rem;
+    text-align: center;
+    border-bottom: 1px solid var(--light);
+  }
+  .hero-eyebrow {
+    font-size: 0.72rem; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--coral);
+    margin-bottom: 1.2rem; font-weight: 600;
+  }
+  .hero h1 {
+    font-size: clamp(2rem, 4.5vw, 3.5rem);
+    font-weight: 700; line-height: 1.2;
+    max-width: 680px; margin: 0 auto 1.4rem;
+    letter-spacing: -0.02em; color: var(--ink);
+  }
+  .hero h1 em { font-style: normal; color: var(--coral); }
+  .hero-sub {
+    font-size: 1rem; color: var(--mid); font-weight: 300;
+    max-width: 560px; margin: 0 auto 3.5rem; line-height: 1.75;
+  }
+  .hero-stats {
+    display: flex; flex-wrap: wrap; gap: 1.5rem;
+    justify-content: center; margin-top: 2.5rem;
+  }
+  .stat-chip {
+    background: var(--white);
+    border: 1px solid var(--light);
+    border-radius: 4px;
+    padding: 1.2rem 1.8rem;
+    text-align: center; min-width: 130px;
+  }
+  .stat-chip .num {
+    font-size: 2rem; color: var(--coral); font-weight: 700;
+    display: block; line-height: 1; margin-bottom: 0.3rem;
+    letter-spacing: -0.02em;
+  }
+  .stat-chip .label {
+    font-size: 0.7rem; color: var(--mid);
+    text-transform: uppercase; letter-spacing: 0.1em; font-weight: 500;
+  }
+
+  /* ─── SECTIONS ───────────────────────────────────────────────── */
+  section {
+    padding: var(--section-gap) 3rem;
+    max-width: 1080px; margin: 0 auto;
+  }
+  .section-eyebrow {
+    font-size: 0.7rem; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--coral);
+    margin-bottom: 0.6rem; font-weight: 600;
+    display: flex; align-items: center; gap: 0.6rem;
+  }
+  .section-eyebrow::before {
+    content: ''; display: block;
+    width: 20px; height: 2px; background: var(--coral);
+  }
+  section h2 {
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    font-weight: 700; line-height: 1.2;
+    margin-bottom: 1.2rem; color: var(--ink);
+    letter-spacing: -0.02em;
+  }
+  .lead {
+    font-size: 1rem; color: var(--mid); font-weight: 300;
+    max-width: 640px; margin-bottom: 2.5rem; line-height: 1.8;
+  }
+
+  /* grey band for alternating sections */
+  .band {
+    background: var(--pale);
+    border-top: 1px solid var(--light);
+    border-bottom: 1px solid var(--light);
+    padding: var(--section-gap) 3rem;
+  }
+  .band > * { max-width: 1080px; margin: 0 auto; }
+  .band h2 { color: var(--ink); }
+  .band .lead { color: var(--mid); }
+
+  /* ─── VISION BOX ─────────────────────────────────────────────── */
+  .vision-box {
+    background: var(--ink);
+    color: var(--white);
+    border-radius: 4px;
+    padding: 3rem 3.5rem;
+    margin-bottom: 1.5rem;
+    position: relative; overflow: hidden;
+  }
+  .vision-box::before {
+    content: '\201C';
+    position: absolute; top: -1.5rem; left: 2rem;
+    font-size: 10rem; color: rgba(255,255,255,0.06);
+    line-height: 1;
+  }
+  .vision-box p {
+    font-size: 1.2rem; line-height: 1.8; font-weight: 300;
+    position: relative; z-index: 1;
+  }
+  .vision-box .vision-label {
+    font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--coral); font-weight: 600; margin-bottom: 1rem; display: block;
+  }
+  .mission-box {
+    background: var(--coral);
+    color: var(--white);
+    border-radius: 4px;
+    padding: 2.5rem 3.5rem;
+  }
+  .mission-box h3 {
+    font-size: 0.7rem; letter-spacing: 0.18em;
+    text-transform: uppercase; color: rgba(255,255,255,0.75);
+    font-weight: 600; margin-bottom: 1rem;
+  }
+  .mission-box p { font-size: 1rem; line-height: 1.8; font-weight: 300; }
+
+  /* ─── PRINCIPLES GRID ────────────────────────────────────────── */
+  .principles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem; margin-top: 2.5rem;
+  }
+  .principle-card {
+    background: var(--white);
+    border: 1px solid var(--light);
+    border-radius: 4px; padding: 1.8rem;
+    border-top: 3px solid var(--coral);
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+  .principle-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.08); transform: translateY(-2px); }
+  .principle-card h3 { font-size: 1rem; color: var(--ink); font-weight: 600; margin-bottom: 0.6rem; }
+  .principle-card p { font-size: 0.875rem; color: var(--mid); line-height: 1.7; font-weight: 300; }
+
+  /* ─── SWOT ───────────────────────────────────────────────────── */
+  .swot-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 1rem; margin-top: 2rem;
+  }
+  .swot-card { border-radius: 4px; padding: 2rem; }
+  .swot-card h3 {
+    font-size: 0.7rem; letter-spacing: 0.15em;
+    text-transform: uppercase; font-weight: 700; margin-bottom: 1rem;
+  }
+  .swot-card ul { list-style: none; }
+  .swot-card li {
+    font-size: 0.875rem; line-height: 1.65; font-weight: 300;
+    padding: 0.45rem 0 0.45rem 1.2rem;
+    border-bottom: 1px solid rgba(0,0,0,0.06); position: relative;
+  }
+  .swot-card li::before { content: '→'; position: absolute; left: 0; font-size: 0.75rem; }
+  .swot-card li:last-child { border-bottom: none; }
+  .swot-s { background: #f0f7f1; color: #1a3d1e; }
+  .swot-s h3 { color: #2e7d32; }
+  .swot-s li::before { color: #2e7d32; }
+  .swot-w { background: #fdf5ef; color: #3d2008; }
+  .swot-w h3 { color: #c45a00; }
+  .swot-w li::before { color: #c45a00; }
+  .swot-o { background: #eff5fd; color: #0d2744; }
+  .swot-o h3 { color: #1565c0; }
+  .swot-o li::before { color: #1565c0; }
+  .swot-t { background: #fdf0ee; color: #3d0a05; }
+  .swot-t h3 { color: var(--coral); }
+  .swot-t li::before { color: var(--coral); }
+
+  /* ─── PRIORITIES ─────────────────────────────────────────────── */
+  .priorities-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1rem; margin-top: 2.5rem;
+  }
+  .priority-card {
+    border-radius: 4px; padding: 2.5rem 2rem; color: var(--white);
+  }
+  .priority-card:nth-child(1) { background: var(--ink); }
+  .priority-card:nth-child(2) { background: #2a6632; }
+  .priority-card:nth-child(3) { background: var(--coral); }
+  .priority-card .p-number {
+    font-size: 3rem; font-weight: 700; opacity: 0.15; line-height: 1; margin-bottom: 0.5rem;
+  }
+  .priority-card h3 { font-size: 1.05rem; margin-bottom: 1rem; line-height: 1.4; font-weight: 600; }
+  .priority-card ul { list-style: none; }
+  .priority-card li {
+    font-size: 0.84rem; line-height: 1.6; font-weight: 300;
+    padding: 0.4rem 0 0.4rem 1rem; position: relative;
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+    color: rgba(255,255,255,0.85);
+  }
+  .priority-card li::before { content: '›'; position: absolute; left: 0; color: rgba(255,255,255,0.4); }
+  .priority-card li:last-child { border-bottom: none; }
+
+  .financial-goal {
+    margin-top: 1.5rem;
+    background: var(--coral); color: var(--white);
+    border-radius: 4px; padding: 2.5rem 3rem;
+    display: flex; align-items: center; gap: 2rem; flex-wrap: wrap;
+  }
+  .financial-goal .amount {
+    font-size: 3.2rem; font-weight: 700; white-space: nowrap; letter-spacing: -0.02em;
+  }
+  .financial-goal p { font-size: 1rem; line-height: 1.75; flex: 1; min-width: 220px; font-weight: 300; }
+
+  /* ─── ORG DEVELOPMENT ────────────────────────────────────────── */
+  .org-items { margin-top: 2rem; display: flex; flex-direction: column; gap: 1px; border: 1px solid var(--light); border-radius: 4px; overflow: hidden; }
+  .org-item {
+    background: var(--white); padding: 2rem 2.5rem;
+    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2rem;
+    border-bottom: 1px solid var(--light);
+  }
+  .org-item:last-child { border-bottom: none; }
+  .org-item-block h4 {
+    font-size: 0.68rem; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--coral);
+    font-weight: 600; margin-bottom: 0.4rem;
+  }
+  .org-item-block .title {
+    font-size: 1rem; color: var(--ink); font-weight: 600; margin-bottom: 0.5rem;
+  }
+  .org-item-block p { font-size: 0.875rem; color: var(--mid); line-height: 1.7; font-weight: 300; }
+
+  /* ─── BUDGET ─────────────────────────────────────────────────── */
+  .budget-table { width: 100%; border-collapse: collapse; margin-top: 2rem; }
+  .budget-table th {
+    text-align: left; padding: 0.75rem 1rem;
+    font-size: 0.7rem; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--mid); font-weight: 600;
+    border-bottom: 2px solid var(--light);
+  }
+  .budget-table td { padding: 0.9rem 1rem; border-bottom: 1px solid var(--light); font-size: 0.9rem; font-weight: 300; }
+  .budget-table tr:last-child td {
+    font-weight: 700; color: var(--ink);
+    border-top: 2px solid var(--ink); border-bottom: none;
+  }
+  .budget-table .amount { text-align: right; font-variant-numeric: tabular-nums; }
+  .budget-bar { height: 5px; background: var(--light); border-radius: 3px; margin-top: 5px; }
+  .budget-bar-fill { height: 100%; border-radius: 3px; background: var(--coral); }
+
+  /* ─── GOVERNANCE ─────────────────────────────────────────────── */
+  .gov-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1rem; margin-top: 2rem;
+  }
+  .gov-card {
+    background: var(--white); border-radius: 4px; padding: 2rem;
+    border: 1px solid rgba(255,255,255,0.15);
+  }
+  .gov-card h3 { color: var(--coral); font-size: 1rem; font-weight: 600; margin-bottom: 0.7rem; }
+  .gov-card p { color: rgba(255,255,255,0.75); font-size: 0.875rem; line-height: 1.7; font-weight: 300; }
+
+  .risk-items { margin-top: 2rem; display: flex; flex-direction: column; gap: 0.75rem; }
+  .risk-item {
+    background: rgba(255,255,255,0.06);
+    border-radius: 4px; padding: 1.5rem 2rem;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
+    border-left: 3px solid var(--coral);
+  }
+  .risk-item h4 {
+    font-size: 0.68rem; letter-spacing: 0.12em;
+    text-transform: uppercase; color: rgba(255,255,255,0.45);
+    font-weight: 600; margin-bottom: 0.35rem;
+  }
+  .risk-item p { font-size: 0.875rem; color: rgba(255,255,255,0.82); line-height: 1.7; font-weight: 300; }
+
+  /* ─── CLOSING ─────────────────────────────────────────────────── */
+  .closing {
+    background: var(--ink); color: var(--white);
+    text-align: center; padding: 6rem 2rem;
+  }
+  .closing h2 {
+    font-size: clamp(1.6rem, 3.5vw, 2.6rem);
+    font-weight: 700; max-width: 600px;
+    margin: 0 auto 1.2rem; line-height: 1.25;
+    color: var(--white); letter-spacing: -0.02em;
+  }
+  .closing p { color: rgba(255,255,255,0.65); max-width: 500px; margin: 0 auto; font-size: 1rem; line-height: 1.8; font-weight: 300; }
+
+  footer {
+    background: var(--charcoal);
+    color: rgba(255,255,255,0.4);
+    text-align: center; padding: 1.5rem 2rem;
+    font-size: 0.75rem; letter-spacing: 0.05em; font-weight: 300;
+  }
+
+  /* ─── FADE-IN ─────────────────────────────────────────────────── */
+  .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.5s ease, transform 0.5s ease; }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+  /* ─── RESPONSIVE ─────────────────────────────────────────────── */
+  @media (max-width: 768px) {
+    nav { padding: 0 1.5rem; }
+    section, .band { padding: var(--section-gap) 1.5rem; }
+    .hero { padding: 4rem 1.5rem 3rem; }
+    .swot-grid { grid-template-columns: 1fr; }
+    .org-item { grid-template-columns: 1fr; }
+    .risk-item { grid-template-columns: 1fr; }
+    .vision-box, .mission-box { padding: 2rem 2rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- PASSWORD GATE -->
+<div id="gate">
+  <div class="gate-box">
+    <div class="gate-logo">
+      <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="32,4 60,20 60,44 32,60 4,44 4,20" fill="none" stroke="#3eb3c8" stroke-width="1.4"/>
+        <polygon points="32,7 57,21.5 57,42.5 32,57 7,42.5 7,21.5" fill="none" stroke="#5bbf6a" stroke-width="1.4"/>
+        <polygon points="32,10 54,23 54,41 32,54 10,41 10,23" fill="none" stroke="#f5c842" stroke-width="1.4"/>
+        <polygon points="32,13 51,24.5 51,39.5 32,51 13,39.5 13,24.5" fill="none" stroke="#f0a030" stroke-width="1.4"/>
+        <polygon points="32,16 48,26 48,38 32,48 16,38 16,26" fill="none" stroke="#f0523d" stroke-width="1.4"/>
+        <polygon points="32,19 45,27.5 45,36.5 32,45 19,36.5 19,27.5" fill="none" stroke="#c0392b" stroke-width="1.4"/>
+        <polygon points="32,22 42,29 42,35 32,42 22,35 22,29" fill="none" stroke="#3eb3c8" stroke-width="1.4"/>
+        <polygon points="32,25 39,30.5 39,33.5 32,39 25,33.5 25,30.5" fill="none" stroke="#5bbf6a" stroke-width="1.4"/>
+        <circle cx="32" cy="32" r="3" fill="#f0523d"/>
+      </svg>
+    </div>
+    <h1>Wick Award</h1>
+    <p class="gate-sub">Strategic Plan 2025–2028 — Team Access</p>
+    <input type="password" id="pw-input" placeholder="Enter password" autocomplete="off">
+    <button class="gate-btn" onclick="checkPassword()">Enter</button>
+    <p class="gate-error" id="pw-error"></p>
+  </div>
+</div>
+
+<!-- NAVIGATION -->
+<nav id="main-nav" style="display:none">
+  <a class="nav-brand" href="#top">Wick Award</a>
+  <ul class="nav-links">
+    <li><a href="#introduction">Introduction</a></li>
+    <li><a href="#foundation">Foundation</a></li>
+    <li><a href="#analysis">Landscape</a></li>
+    <li><a href="#priorities">Priorities</a></li>
+    <li><a href="#org-dev">Our Team</a></li>
+    <li><a href="#implementation">Plan &amp; Budget</a></li>
+    <li><a href="#governance">Governance</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<header id="top" class="hero" style="display:none">
+  <div class="hero-eyebrow">Strategic Plan · 2025 – 2028</div>
+  <h1>Building a <em>resilient</em>, connected Well Street Common Neighbourhood</h1>
+  <p class="hero-sub">A decade of community-led change in Hackney Wick — now formalised as a Charitable Incorporated Organisation with an expanded mandate and renewed purpose.</p>
+  <div class="hero-stats">
+    <div class="stat-chip">
+      <span class="num" data-count="10">0</span>
+      <span class="label">Years of Impact</span>
+    </div>
+    <div class="stat-chip">
+      <span class="num" data-count="52" data-suffix="%">0%</span>
+      <span class="label">Social Renters</span>
+    </div>
+    <div class="stat-chip">
+      <span class="num" data-prefix="£" data-count="1" data-suffix="m">£0m</span>
+      <span class="label">Lottery Funding</span>
+    </div>
+    <div class="stat-chip">
+      <span class="num" data-count="3">0</span>
+      <span class="label">Wards Served</span>
+    </div>
+    <div class="stat-chip">
+      <span class="num" data-prefix="£" data-count="106" data-suffix="k">£0k</span>
+      <span class="label">Annual Budget</span>
+    </div>
+  </div>
+</header>
+
+<!-- MAIN CONTENT -->
+<main id="main-content" style="display:none">
+
+  <!-- 1. INTRODUCTION -->
+  <section id="introduction">
+    <div class="section-eyebrow">01 — Introduction</div>
+    <h2>Our journey and evolving purpose</h2>
+    <p class="lead">Wick Award was established in 2015 as a resident-led Big Local project, empowered with £1 million in National Lottery funding to make Hackney Wick a better place to live. In July 2025, we incorporated as a CIO — securing our legacy and expanding our reach.</p>
+
+    <div class="principles-grid">
+      <div class="principle-card fade-in">
+        <h3>Our Legacy (2015–2024)</h3>
+        <p>For ten years, we served as a trusted connector, investor, and advocate — nurturing grassroots initiatives and ensuring residents have a powerful voice in shaping their neighbourhood. Three community-identified priorities guided our work: young people, health &amp; wellbeing, and community connections.</p>
+      </div>
+      <div class="principle-card fade-in">
+        <h3>Strategic Expansion</h3>
+        <p>Incorporation as a CIO broadens our geographical focus to the Well Street Common Neighbourhood — now covering the wards of Hackney Wick, Victoria, and Morningside. We are applying our proven, resident-led model to a wider community.</p>
+      </div>
+      <div class="principle-card fade-in">
+        <h3>The Community Context</h3>
+        <p>52.1% of households are social renters — more than double the London average. The area has higher deprivation, lower employment, and higher rates of disability than the borough average. These are the lived realities driving our mandate.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. STRATEGIC FOUNDATION -->
+  <section id="foundation" style="padding-top:0">
+    <div class="section-eyebrow">02 — Strategic Foundation</div>
+    <h2>Vision, Mission &amp; Principles</h2>
+    <p class="lead">This is our organisation's North Star — the fundamental purpose, values, and principles that guide every decision, partnership, and initiative we undertake.</p>
+
+    <div class="vision-box fade-in">
+      <span class="vision-label">Our Vision</span>
+      <p>For the Well Street Common Neighbourhood to be a place where residents and organisations feel empowered to work together to build resilience, raise aspirations, and break down barriers — creating a genuine sense of community for the long term.</p>
+    </div>
+
+    <div class="mission-box fade-in">
+      <h3>Our Mission</h3>
+      <p>To provide an open and accessible forum for residents, linking the Well Street Common Neighbourhood's rich and diverse communities to collectively define their priorities and support initiatives designed to meet community needs — acting as an interface between the community and social providers.</p>
+    </div>
+
+    <div class="principles-grid" style="margin-top:3rem">
+      <div class="principle-card fade-in">
+        <h3>Resident-led</h3>
+        <p>Our direction is set by the priorities and lived experiences of local people. Those most affected by issues are best placed to design the solutions.</p>
+      </div>
+      <div class="principle-card fade-in">
+        <h3>Person-centred</h3>
+        <p>We listen to, respond to, and involve residents in all decisions — rooted in empathy, respect, and a deep understanding of individual needs.</p>
+      </div>
+      <div class="principle-card fade-in">
+        <h3>Community Initiative</h3>
+        <p>We empower and support home-grown, hyperlocal projects. We take risks on good ideas from passionate local people who might otherwise not receive funding.</p>
+      </div>
+      <div class="principle-card fade-in">
+        <h3>Long-term</h3>
+        <p>We are committed to building sustainable change and trusted relationships over time — patient, consistent investment in community capacity.</p>
+      </div>
+      <div class="principle-card fade-in">
+        <h3>Inclusive</h3>
+        <p>We actively strive to ensure our work reflects the voices of everyone in our diverse community, breaking down barriers and championing equity.</p>
+      </div>
+      <div class="principle-card fade-in">
+        <h3>Flexible &amp; Responsive</h3>
+        <p>We remain agile, adapting our strategies and activities to meet emerging community needs and respond to new evidence and opportunities.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. LANDSCAPE ANALYSIS -->
+  <section id="analysis" style="background:var(--pale); max-width:100%; border-top:1px solid var(--light); border-bottom:1px solid var(--light); padding: var(--section-gap) 3rem;">
+    <div style="max-width:1080px; margin:0 auto">
+      <div class="section-eyebrow">03 — Strategic Landscape</div>
+      <h2>Challenges &amp; Opportunities</h2>
+      <p class="lead">A clear-eyed understanding of our strengths, weaknesses, opportunities, and threats — the foundation for realistic goals and effective strategies.</p>
+
+      <div class="swot-grid">
+        <div class="swot-card swot-s fade-in">
+          <h3>Strengths</h3>
+          <ul>
+            <li>Ten-year legacy as a unique, trusted connector</li>
+            <li>Resident-led with a "dispersed model of leadership"</li>
+            <li>Evidence-based approach grounded in community research</li>
+            <li>Strong networks across VCS and statutory bodies</li>
+          </ul>
+        </div>
+        <div class="swot-card swot-w fade-in">
+          <h3>Weaknesses</h3>
+          <ul>
+            <li>Limited track record in diversified fundraising</li>
+            <li>Governance diversity gap — trustee board not fully representative</li>
+            <li>Operational dependence on key personnel</li>
+          </ul>
+        </div>
+        <div class="swot-card swot-o fade-in">
+          <h3>Opportunities</h3>
+          <ul>
+            <li>NHS Integrated Care Systems prioritising place-based, preventative work</li>
+            <li>CIO status enables expanded mandate and partnerships</li>
+            <li>Growing interest from public sector in community-led models</li>
+          </ul>
+        </div>
+        <div class="swot-card swot-t fade-in">
+          <h3>Threats</h3>
+          <ul>
+            <li>Highly competitive funding environment in the Hackney VCS</li>
+            <li>Risk of losing key staff and institutional knowledge</li>
+            <li>Transition from Big Local single-stream funding model</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. PRIORITIES -->
+  <section id="priorities">
+    <div class="section-eyebrow">04 — Strategic Priorities</div>
+    <h2>Our focus for 2025–2028</h2>
+    <p class="lead">Three evidence-based priorities — our direct response to deep-seated health inequalities, lack of youth opportunity, and social fragmentation identified in our community analysis.</p>
+
+    <div class="priorities-grid">
+      <div class="priority-card fade-in">
+        <div class="p-number">01</div>
+        <h3>Empowering People &amp; Strengthening Community Connections</h3>
+        <ul>
+          <li>Build on ten-year legacy as a trusted organisation</li>
+          <li>Act as convenor, advocate &amp; connector</li>
+          <li>Fund hyperlocal organisations via Community Chest</li>
+          <li>Conduct peer-led community research</li>
+        </ul>
+      </div>
+      <div class="priority-card fade-in">
+        <div class="p-number">02</div>
+        <h3>Improving Health &amp; Wellbeing</h3>
+        <ul>
+          <li>Grow preventative healthcare in partnership with NHS Trusts</li>
+          <li>Support green &amp; eco-projects</li>
+          <li>Develop community food co-ops and food growing initiatives</li>
+        </ul>
+      </div>
+      <div class="priority-card fade-in">
+        <div class="p-number">03</div>
+        <h3>Creating Opportunities for Young People</h3>
+        <ul>
+          <li>Continue strategic youth work partnerships (Hackney Quest, The Wickers)</li>
+          <li>Champion youth voice in local services</li>
+          <li>Influence public space design and planning</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="financial-goal fade-in">
+      <div class="amount">£106k</div>
+      <p>Our overarching financial goal — securing £106,000 annually to deliver our strategic priorities and ensure long-term organisational sustainability.</p>
+    </div>
+  </section>
+
+  <!-- 5. ORG DEVELOPMENT -->
+  <section id="org-dev" style="background:var(--white); max-width:100%; border-top:1px solid var(--light); padding: var(--section-gap) 3rem;">
+  <div style="max-width:1080px; margin:0 auto">
+    <div class="section-eyebrow">05 — Organisational Development</div>
+    <h2>Building our capacity for impact</h2>
+    <p class="lead">Achieving our external mission depends critically on our internal strength. Three targeted priority areas will ensure we are fit for purpose and accountable.</p>
+
+    <div class="org-items">
+      <div class="org-item fade-in">
+        <div class="org-item-block">
+          <h4>Identified Gap</h4>
+          <div class="title">Enhancing Diversity &amp; Inclusion</div>
+        </div>
+        <div class="org-item-block">
+          <h4>Why It Matters</h4>
+          <p>Lack of diverse representation in governance risks undermining our connection to all parts of the community and our legitimacy as a resident-led organisation.</p>
+        </div>
+        <div class="org-item-block">
+          <h4>Our Solution</h4>
+          <p>Actively recruit trustees, advisors, and members with local lived experience who represent the diverse communities of the Well Street Common Neighbourhood.</p>
+        </div>
+      </div>
+
+      <div class="org-item fade-in">
+        <div class="org-item-block">
+          <h4>Identified Gap</h4>
+          <div class="title">Improving Strategic Storytelling</div>
+        </div>
+        <div class="org-item-block">
+          <h4>Why It Matters</h4>
+          <p>We need to continuously and compellingly communicate our unique role as a "humble enabler" and catalyst — to funders, partners, and residents alike.</p>
+        </div>
+        <div class="org-item-block">
+          <h4>Our Solution</h4>
+          <p>Secure funding for a communications and social media content creator role to develop engaging digital content and manage our channels effectively.</p>
+        </div>
+      </div>
+
+      <div class="org-item fade-in">
+        <div class="org-item-block">
+          <h4>Identified Gap</h4>
+          <div class="title">Strengthening Fundraising Capability</div>
+        </div>
+        <div class="org-item-block">
+          <h4>Why It Matters</h4>
+          <p>We need dedicated fundraising support and a clear strategy for replacing the Big Local "Community Chest" model to build a sustainable, diverse funding base.</p>
+        </div>
+        <div class="org-item-block">
+          <h4>Our Solution</h4>
+          <p>Mobilise trustees to actively support funding bids and invest in bid-writing training — including exploring the potential of AI support tools.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  </section>
+
+  <!-- 6. IMPLEMENTATION & BUDGET -->
+  <section id="implementation" style="background:var(--pale); max-width:100%; border-top:1px solid var(--light); border-bottom:1px solid var(--light); padding: var(--section-gap) 3rem;">
+    <div style="max-width:1080px; margin:0 auto">
+      <div class="section-eyebrow">06 — Implementation &amp; Finance</div>
+      <h2>How we will deliver</h2>
+      <p class="lead">Our annual operational budget is lean, efficient, and focused on maximising community impact. Every pound is allocated to deliver on our strategic promises.</p>
+
+      <table class="budget-table">
+        <thead>
+          <tr>
+            <th>Budget Item</th>
+            <th class="amount">Annual Funding</th>
+            <th style="width:220px; padding-left:2rem">Proportion</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Community Chest (Hyperlocal Grants)</td>
+            <td class="amount">£20,000</td>
+            <td style="padding-left:2rem"><div class="budget-bar"><div class="budget-bar-fill" style="width:18.9%"></div></div></td>
+          </tr>
+          <tr>
+            <td>Project Worker Post (3 days/week)</td>
+            <td class="amount">£40,000</td>
+            <td style="padding-left:2rem"><div class="budget-bar"><div class="budget-bar-fill" style="width:37.7%"></div></div></td>
+          </tr>
+          <tr>
+            <td>Administration Costs (LTO)</td>
+            <td class="amount">£10,000</td>
+            <td style="padding-left:2rem"><div class="budget-bar"><div class="budget-bar-fill" style="width:9.4%"></div></div></td>
+          </tr>
+          <tr>
+            <td>Neighbourhood Forum Contract</td>
+            <td class="amount">£12,000</td>
+            <td style="padding-left:2rem"><div class="budget-bar"><div class="budget-bar-fill" style="width:11.3%"></div></div></td>
+          </tr>
+          <tr>
+            <td>Communication Support</td>
+            <td class="amount">£8,000</td>
+            <td style="padding-left:2rem"><div class="budget-bar"><div class="budget-bar-fill" style="width:7.5%"></div></div></td>
+          </tr>
+          <tr>
+            <td>Community Activities</td>
+            <td class="amount">£5,000</td>
+            <td style="padding-left:2rem"><div class="budget-bar"><div class="budget-bar-fill" style="width:4.7%"></div></div></td>
+          </tr>
+          <tr>
+            <td>Trustee Training &amp; Expenses</td>
+            <td class="amount">£5,000</td>
+            <td style="padding-left:2rem"><div class="budget-bar"><div class="budget-bar-fill" style="width:4.7%"></div></div></td>
+          </tr>
+          <tr>
+            <td>Desk-space Rental</td>
+            <td class="amount">£6,000</td>
+            <td style="padding-left:2rem"><div class="budget-bar"><div class="budget-bar-fill" style="width:5.7%"></div></div></td>
+          </tr>
+          <tr>
+            <td><strong>Total Annual Budget</strong></td>
+            <td class="amount"><strong>£106,000</strong></td>
+            <td style="padding-left:2rem"><div class="budget-bar"><div class="budget-bar-fill" style="width:100%; background:var(--navy)"></div></div></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- 7. GOVERNANCE -->
+  <section id="governance">
+    <div class="section-eyebrow">07 — Governance &amp; Evaluation</div>
+    <h2>Strong oversight, continuous learning</h2>
+    <p class="lead">Our governance, risk management, and evaluation framework is the bedrock of our organisation — essential for maintaining trust with community, partners, and funders.</p>
+
+    <div class="gov-grid">
+      <div class="gov-card fade-in" style="border-top:3px solid var(--coral); border:1px solid var(--light); border-top:3px solid var(--coral);">
+        <h3 style="color:var(--ink);">Board of Trustees</h3>
+        <p style="color:var(--mid);">Holds legal responsibility for strategic direction, financial health, and regulatory compliance. Conducts quarterly reviews of this strategic framework to analyse performance and capture learning.</p>
+      </div>
+      <div class="gov-card fade-in" style="border-top:3px solid var(--rb-1); border:1px solid var(--light); border-top:3px solid var(--rb-1);">
+        <h3 style="color:var(--ink);">Partners &amp; Community</h3>
+        <p style="color:var(--mid);">A broad network of community representatives providing invaluable insight, articulating community needs, and ensuring our work remains relevant and grounded in lived experience.</p>
+      </div>
+      <div class="gov-card fade-in" style="border-top:3px solid var(--rb-2); border:1px solid var(--light); border-top:3px solid var(--rb-2);">
+        <h3 style="color:var(--ink);">Project Worker</h3>
+        <p style="color:var(--mid);">The operational link between people and organisations — driving the day-to-day work that builds connections and makes long-term impact in the neighbourhood.</p>
+      </div>
+    </div>
+
+    <h3 style="font-size:0.7rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--coral); font-weight:600; margin:3rem 0 1.2rem; display:flex; align-items:center; gap:0.6rem;"><span style="display:block;width:20px;height:2px;background:var(--coral)"></span>Risk Management</h3>
+
+    <div class="risk-items" style="border:1px solid var(--light); border-radius:4px; overflow:hidden; gap:0;">
+      <div class="risk-item fade-in" style="background:var(--white); border-left:3px solid var(--coral);">
+        <div><h4 style="color:var(--coral);">Potential Risk</h4><p style="color:var(--ink); font-weight:500;">Trustee body lacks representation and expertise</p></div>
+        <div><h4 style="color:var(--mid);">Mitigation</h4><p style="color:var(--mid);">Create a representative structure with a competence framework; promote roles to under-represented groups; implement comprehensive training and inclusive recruitment processes.</p></div>
+      </div>
+      <div class="risk-item fade-in" style="background:var(--pale); border-left:3px solid var(--coral);">
+        <div><h4 style="color:var(--coral);">Potential Risk</h4><p style="color:var(--ink); font-weight:500;">Inability to raise sufficient grant funds</p></div>
+        <div><h4 style="color:var(--mid);">Mitigation</h4><p style="color:var(--mid);">Engage professional fundraising support where needed; implement robust budgeting; ensure strong stewardship and impact reporting to funders.</p></div>
+      </div>
+      <div class="risk-item fade-in" style="background:var(--white); border-left:3px solid var(--coral);">
+        <div><h4 style="color:var(--coral);">Potential Risk</h4><p style="color:var(--ink); font-weight:500;">Loss of key staff and corporate knowledge</p></div>
+        <div><h4 style="color:var(--mid);">Mitigation</h4><p style="color:var(--mid);">Develop a clear succession plan; meticulously document all systems and project knowledge; implement cross-training programmes to build shared capacity.</p></div>
+      </div>
+      <div class="risk-item fade-in" style="background:var(--pale); border-left:3px solid var(--coral);">
+        <div><h4 style="color:var(--coral);">Potential Risk</h4><p style="color:var(--ink); font-weight:500;">Charity lacks clear strategic direction</p></div>
+        <div><h4 style="color:var(--mid);">Mitigation</h4><p style="color:var(--mid);">Involve all key stakeholders in the creation and monitoring of financial and operational plans; collect regular feedback from community members and funders.</p></div>
+      </div>
+    </div>
+
+    <div style="margin-top:1.5rem; background:var(--pale); border-radius:4px; padding:2rem 2.5rem; border-left:3px solid var(--rb-2); border:1px solid var(--light); border-left:3px solid var(--rb-2);">
+      <h3 style="font-size:1rem; font-weight:600; color:var(--ink); margin-bottom:0.7rem;">Monitoring, Evaluation &amp; Learning</h3>
+      <p style="font-size:0.875rem; color:var(--mid); line-height:1.8; font-weight:300;">We will implement a new MEL framework with clear KPIs developed at our October 2025 strategic workshop, tracked quarterly by the trustee board. Community engagement survey scores will measure our effectiveness in empowering residents. This plan is designed to be a <em>dynamic, living document</em> that adapts to the evolving needs of our community.</p>
+    </div>
+  </section>
+
+  <!-- CLOSING -->
+  <div class="closing">
+    <h2>A confident and ambitious new chapter for Wick Award</h2>
+    <p>Grounded in a decade of proven success, our resident-led model is ready for the challenges and opportunities ahead. We invite our partners, funders, and community members to join us on this vital journey.</p>
+  </div>
+
+</main>
+
+<footer>
+  Wick Award · Strategic Plan 2025–2028 · Charitable Incorporated Organisation · Hackney Wick, London
+</footer>
+
+<script>
+  // ── Password gate ──────────────────────────────────────────────
+  const PASSWORD = 'wickaward2025'; // change this as needed
+
+  function checkPassword() {
+    const input = document.getElementById('pw-input').value;
+    if (input === PASSWORD) {
+      document.getElementById('gate').classList.add('hidden');
+      document.getElementById('main-nav').style.display = 'flex';
+      document.getElementById('top').style.display = 'block';
+      document.getElementById('main-content').style.display = 'block';
+      startCounters();
+      initFadeIns();
+    } else {
+      const err = document.getElementById('pw-error');
+      err.textContent = 'Incorrect password — please try again.';
+      document.getElementById('pw-input').value = '';
+      document.getElementById('pw-input').focus();
+      setTimeout(() => { err.textContent = ''; }, 3000);
+    }
+  }
+
+  document.getElementById('pw-input').addEventListener('keydown', e => {
+    if (e.key === 'Enter') checkPassword();
+  });
+
+  // ── Animated counters ──────────────────────────────────────────
+  function startCounters() {
+    document.querySelectorAll('[data-count]').forEach(el => {
+      const target = parseInt(el.dataset.count);
+      const prefix = el.dataset.prefix || '';
+      const suffix = el.dataset.suffix || '';
+      let start = 0;
+      const duration = 1200;
+      const step = 16;
+      const increment = target / (duration / step);
+      const timer = setInterval(() => {
+        start = Math.min(start + increment, target);
+        el.textContent = prefix + Math.round(start) + suffix;
+        if (start >= target) clearInterval(timer);
+      }, step);
+    });
+  }
+
+  // ── Fade-in on scroll ──────────────────────────────────────────
+  function initFadeIns() {
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  }
+</script>
+
+</body>
+</html>
